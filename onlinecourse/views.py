@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Course, Enrollment, Question, Choice, Submission
+from .models import Course, Enrollment, Question, Choice, Submission, Lesson
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
@@ -126,6 +126,7 @@ def extract_answers(request):
 def show_exam_result(request, course_id, submission_id):
     course = get_object_or_404(Course, pk=course_id)
     submission = get_object_or_404(Submission, pk=submission_id)
+
     total_score = 0
 
     questions = Question.objects.filter(lesson__course=course)
@@ -133,12 +134,15 @@ def show_exam_result(request, course_id, submission_id):
 
     for question in questions:
         if question.is_get_score(selected_choices):
-            total_score += 1
+            total_score += 25
+
+    lesson = Lesson.objects.filter(course=course).first()
 
     context = {
         'course': course,
         'total_score': total_score,
         'selected_choices': selected_choices,
+        'lesson': lesson,
         'questions': questions,
     }
 

@@ -38,11 +38,11 @@
 
     <!-- Page content -->
     {% if course_list %}
-        <div class="container">
+        <div class="container mt-5 " style="max-width: 25em;">
             <div class="card-deck">
                 {% for course in course_list %}
                          <div class="card" style="width: 36rem;">
-                          <img class="card-img-left" src="{{MEDIA_URL}}/{{ course.image }}" width="240px" height="240px"
+                          <img class="card-img-left" src="{{MEDIA_URL}}/{{ course.image }}" width="max-content" height="300px"
                                alt="Course image">
                           <div class="card-body bg-light">
                               <h5 class="card-title">{{ course.name }}, <span class="text-success">

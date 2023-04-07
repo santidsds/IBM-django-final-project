@@ -62,7 +62,7 @@ class Course(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Enrollment')
     total_enrollment = models.IntegerField(default=0)
     is_enrolled = False
-    pass_mark = models.IntegerField(default=50)  # set a default pass mark of 50%
+    
 
 
     def __str__(self):
@@ -76,6 +76,7 @@ class Lesson(models.Model):
     order = models.IntegerField(default=0)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     content = models.TextField()
+    pass_mark = models.IntegerField(default=50)  # set a default pass mark of 50%
 
 
 # Enrollment model
