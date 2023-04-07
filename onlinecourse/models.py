@@ -62,6 +62,8 @@ class Course(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Enrollment')
     total_enrollment = models.IntegerField(default=0)
     is_enrolled = False
+    pass_mark = models.IntegerField(default=50)  # set a default pass mark of 50%
+
 
     def __str__(self):
         return "Name: " + self.name + "," + \
