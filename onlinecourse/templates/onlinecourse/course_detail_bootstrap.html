@@ -48,7 +48,7 @@
     {% if user.is_authenticated %}
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#exam">Start Exam</button>
     <div id="exam" class="collapse mt-3">
-        <form id="questionform" action="" method="post">
+        <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="post">
             {% csrf_token %}
             {% for lesson in course.lesson_set.all %}
                 {% for question in lesson.question_set.all %}
